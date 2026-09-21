@@ -1,0 +1,6 @@
+@extends('admin.layouts.app')
+@section('title','Customers')
+@section('page-title','Customers')
+@section('content')
+<div class="card"><div class="card-header d-flex"><h3>Customer Management</h3><a href="{{ route('admin.customers.create') }}" class="btn btn-primary btn-sm ml-auto"><i class="fas fa-plus"></i> Add Customer</a></div><div class="card-body"><form class="mb-3"><input class="form-control" name="search" value="{{ request('search') }}" placeholder="Search name, phone or email"></form><div class="table-responsive"><table class="table datatable"><thead><tr><th>Customer</th><th>Phone</th><th>Email</th><th>Status</th><th>Created</th><th></th></tr></thead><tbody>@foreach($customers as $customer)<tr><td>{{ $customer->full_name }}<br><small>{{ $customer->customer_code }}</small></td><td>{{ $customer->mobile }}</td><td>{{ $customer->email }}</td><td><span class="badge badge-{{ $customer->status === 'active' ? 'success' : 'secondary' }}">{{ ucfirst($customer->status) }}</span></td><td>{{ $customer->created_at->format('d M Y') }}</td><td><a class="btn btn-sm btn-outline-primary" href="{{ route('admin.customers.show',$customer) }}">View</a></td></tr>@endforeach</tbody></table></div>{{ $customers->links() }}</div></div>
+@endsection

@@ -1,0 +1,6 @@
+@extends('admin.layouts.app')
+@section('title','Notifications')
+@section('page-title','Notifications')
+@section('content')
+<div class="card"><div class="card-header d-flex"><h3>Notifications</h3><form method="POST" action="{{ route('admin.notifications.read-all') }}" class="ml-auto">@csrf<button class="btn btn-primary btn-sm">Mark All Read</button></form></div><div class="card-body table-responsive"><table class="table datatable"><thead><tr><th>Title</th><th>Message</th><th>Type</th><th>Status</th><th>Date</th><th></th></tr></thead><tbody>@foreach($notifications as $notification)<tr><td>{{ $notification->title }}</td><td>{{ $notification->message }}</td><td>{{ ucfirst($notification->type) }}</td><td><span class="badge badge-{{ $notification->read_at ? 'secondary' : 'success' }}">{{ $notification->read_at ? 'Read' : 'Unread' }}</span></td><td>{{ $notification->created_at->format('d M Y H:i') }}</td><td>@unless($notification->read_at)<form method="POST" action="{{ route('admin.notifications.read',$notification) }}">@csrf @method('PATCH')<button class="btn btn-outline-primary btn-sm">Read</button></form>@endunless</td></tr>@endforeach</tbody></table>{{ $notifications->links() }}</div></div>
+@endsection

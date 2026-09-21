@@ -1,0 +1,6 @@
+@extends('admin.layouts.app')
+@section('title','Sales')
+@section('page-title','Sales')
+@section('content')
+<div class="card"><div class="card-header d-flex"><h3>Ticket Sales</h3><a href="{{ route('admin.ticket-sales.create') }}" class="btn btn-primary btn-sm ml-auto"><i class="fas fa-plus"></i> New Sale</a></div><div class="card-body table-responsive"><table class="table datatable"><thead><tr><th>Sale</th><th>Customer</th><th>Total</th><th>Status</th><th>Tickets</th><th>Date</th><th></th></tr></thead><tbody>@foreach($sales as $sale)<tr><td>{{ $sale->sale_number }}</td><td>{{ $sale->customer->full_name }}</td><td>Rs {{ number_format($sale->total_amount,2) }}</td><td><span class="badge badge-info">{{ ucfirst($sale->payment_status) }}</span></td><td>{{ $sale->tickets->count() }}</td><td>{{ $sale->sale_date->format('d M Y') }}</td><td class="d-flex"><a href="{{ route('admin.ticket-sales.show',$sale) }}" class="btn btn-outline-primary btn-sm mr-1">View</a><a href="{{ route('admin.ticket-sales.edit',$sale) }}" class="btn btn-outline-secondary btn-sm mr-1">Edit</a><form method="POST" action="{{ route('admin.ticket-sales.destroy',$sale) }}">@csrf @method('DELETE')<button class="btn btn-outline-danger btn-sm">Delete</button></form></td></tr>@endforeach</tbody></table>{{ $sales->links() }}</div></div>
+@endsection
