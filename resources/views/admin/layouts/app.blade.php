@@ -494,9 +494,15 @@
             </div>
         </section>
     </div>
-
+    <style>
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
     <!-- Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer clearfix" >
         <strong>Copyright &copy; {{ date('Y') }} <a href="#" style="color:var(--primary);">{{ $siteName ?? 'RBAC System' }}</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">

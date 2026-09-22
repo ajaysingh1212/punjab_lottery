@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $superAdmin = User::firstOrCreate(
-            ['email' => 'superadmin@rbac.com'],
+            ['email' => 'superadmin@gmail.com'],
             [
                 'name' => 'Super Administrator',
                 'username' => 'superadmin',
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         $superAdmin->assignRole('super-admin');
 
         $admin = User::firstOrCreate(
-            ['email' => 'admin@rbac.com'],
+            ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Admin User',
                 'username' => 'admin',
@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole('admin');
 
         $customerUser = User::firstOrCreate(
-            ['email' => 'customer@example.com'],
+            ['email' => 'user@gmail.com'],
             [
                 'name' => 'Demo Customer',
                 'username' => 'customer',
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $customerUser->id,
                 'full_name' => 'Demo Customer',
                 'mobile' => '9876543212',
-                'email' => 'customer@example.com',
+                'email' => 'user@example.com',
                 'city' => 'Delhi',
                 'state' => 'Delhi',
                 'status' => 'active',
@@ -102,9 +102,9 @@ class DatabaseSeeder extends Seeder
         $this->command?->table(
             ['Role', 'Email', 'Password'],
             [
-                ['Super Admin', 'superadmin@rbac.com', 'password'],
-                ['Admin', 'admin@rbac.com', 'password'],
-                ['Customer', 'customer@example.com', 'password'],
+                ['Super Admin', 'superadmin@gmail.com', 'password'],
+                ['Admin', 'admin@gmail.com', 'password'],
+                ['Customer', 'user@gmail.com', 'password'],
             ]
         );
     }

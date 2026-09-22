@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function __invoke()
     {
         $customer = $this->customer();
-        $customer->load('admin', 'tickets.draw.ticketType', 'winners.ticket.draw.ticketType', 'winners.withdrawal', 'charges.payments', 'withdrawals');
+        $customer->load('admin', 'tickets.draw.ticketType', 'winners.ticket.draw.ticketType', 'winners.withdrawal', 'charges.payments', 'charges.bankAccount', 'withdrawals');
         $bankAccounts = BankAccount::where('admin_id', $customer->admin_id)->where('show_for_charges', true)->where('status', 'active')->get();
         $settings = [
             'title' => SiteSetting::get('customer_dashboard_title', 'Punjab Lottery Prize Desk'),

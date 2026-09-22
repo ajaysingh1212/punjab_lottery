@@ -23,5 +23,6 @@ class Charge extends Model
 
     public function customer(): BelongsTo { return $this->belongsTo(Customer::class); }
     public function ticket(): BelongsTo { return $this->belongsTo(Ticket::class); }
+    public function bankAccount(): BelongsTo { return $this->belongsTo(BankAccount::class); }
     public function payments(): HasMany { return $this->hasMany(ChargePayment::class); }
 }
